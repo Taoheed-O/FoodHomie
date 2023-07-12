@@ -1,4 +1,3 @@
-from key import key
 import os
 from langchain import HuggingFaceHub
 from langchain import PromptTemplate, LLMChain
@@ -48,5 +47,5 @@ def name_item_generator(restaurant):
         input_variables=['restaurant'],
         output_variables=['restaurant_name', 'menu_items']
                             )
-    response = chain({'restaurant':'italian'})
+    response = chain({'restaurant':restaurant})
     return response
