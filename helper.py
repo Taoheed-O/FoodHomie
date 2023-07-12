@@ -3,6 +3,7 @@ import os
 from langchain import HuggingFaceHub
 from langchain import PromptTemplate, LLMChain
 from langchain.chains import LLMChain
+from langchain.chains import SequentialChain
 
 
 api_key = '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'
@@ -26,6 +27,26 @@ llm = HuggingFaceHub(
                       )
 
 
-def name_item_generator(cuisine):
-    return {'restaurant name': 'curry delight',
-            'menu items': 'samosa, chicken tikka, chicken biryani, pizza'}
+def name_item_generator(restaurant):
+     # First prompt in the chain
+    prompt_name = PromptTemplate(
+        template = "I want to open a restaurant for {restaurant} food. Suggest a fancy name for that",
+        input_variables=['restaurant']
+                            )
+    llm_name_chain = LLMChain(prompt=prompt_name, llm=llm, output_key='restaurant_name')
+
+
+    # Second prompt in the chain
+    prompt_items = PromptTemplate(
+        template="Suggest 10 menu items for {restaurant_name}. Return as a comma separated variable",
+                            input_variables=['restaurant_name']
+                            )
+    llm_item_chain = LLMChain(prompt=prompt_items, llm=llm, output_key='menu_items')
+
+    chain =  SequentialChain(
+        chains=[llm_name_chain, llm_item_chain],
+        input_variables=['restaurant'],
+        output_variables=['restaurant_name', 'menu_items']
+                            )
+    response = chain({'restaurant':'italian'})
+    return response
