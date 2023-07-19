@@ -29,7 +29,7 @@ llm = HuggingFaceHub(
 def name_item_generator(restaurant):
      # First prompt in the chain
     prompt_name = PromptTemplate(
-        template = "I want to open a restaurant for {restaurant} food. Suggest a fancy name for that",
+        template = "I want to open a restaurant for {restaurant} foods. Suggest a fancy name for that",
         input_variables=['restaurant']
                             )
     llm_name_chain = LLMChain(prompt=prompt_name, llm=llm, output_key='restaurant_name')

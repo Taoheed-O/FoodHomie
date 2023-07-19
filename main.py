@@ -4,7 +4,8 @@ from helper import name_item_generator
 st.title('Restaurant name generator')
 
 cuisine = st.sidebar.selectbox('pick a restaurant', ('arabian', 'mexican', 'indian', 'spanish',
-                                        'italian','pakistani', 'iranian', 'american', 'british', 'african'))
+                                        'italian','pakistani', 'iranian', 'american', 'british', 'african', 'turkish',
+                                        'german', 'finis', 'irish', 'portugese', 'scottish', 'english', 'armenian'))
 
 if cuisine:
     response = name_item_generator(cuisine)
