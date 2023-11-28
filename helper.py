@@ -17,8 +17,20 @@ Camel by writer: "Writer/camel-5b-hf"
 Falcon by Technology Innovation Institute(TII): "tiiuae/falcon-40b"
 '''
 
+key = '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'
+
+from openai import OpenAI
+
+
 repo_id = "google/flan-t5-xxl"
 # See https://huggingface.co/models?pipeline_tag=text-generation&sort=downloads for some other options
+
+
+llm = OpenAI(
+    api_key=key,
+    organization=
+)
+
 
 llm = HuggingFaceHub(
     repo_id=repo_id,
