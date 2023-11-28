@@ -26,10 +26,10 @@ repo_id = "google/flan-t5-xxl"
 # See https://huggingface.co/models?pipeline_tag=text-generation&sort=downloads for some other options
 
 
-llm = OpenAI(
-    api_key=key,
-    organization=
-)
+# llm = OpenAI(
+#     api_key=key,
+#     organization=
+# )
 
 
 llm = HuggingFaceHub(
